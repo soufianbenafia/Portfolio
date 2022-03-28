@@ -43,7 +43,11 @@ def index(request):
         home = None
 
     # About
-    about = About.objects.latest('updated')
+    try:
+        about = About.objects.latest('updated')
+    except about.DoesNotExist:
+        about = None
+
     profiles = Profile.objects.filter(about=about)
 
     # Skills
