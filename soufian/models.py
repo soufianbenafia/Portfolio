@@ -62,6 +62,6 @@ class Skills(models.Model):
 class Portfolio(models.Model):
     image = models.ImageField(upload_to='portfolio/')
     link = models.URLField(max_length=200)
-
+    portfolio_descrip = models.CharField(max_length=70)
     def __str__(self):
         return f'Portfolio {self.id}'

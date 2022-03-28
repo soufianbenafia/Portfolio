@@ -89,6 +89,15 @@ img{
     margin: var(--mb-4) 0;
     text-align: center;
 }
+
+.section-title2{
+    position: relative;
+    font-size: 18px;
+    color: var(--dark-color);
+    margin: var(--mb-4) 0;
+    text-align: center;
+}
+
 .section-title::after{
     position: absolute;
     content: "";
@@ -220,7 +229,7 @@ img{
 .about__img{
     display: flex;
     justify-content: center;
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
     width: 120px;
     height: 120px;
     background-color: var(--first-color);
@@ -313,7 +322,9 @@ img{
 
 /* ===== CONTACT =====*/
 .contact__container{
+    position: relative;
     row-gap: 2rem;
+    left: 270px;
 }
 .contact__subtitle{
     font-size: var(--normal-font-size);
@@ -439,11 +450,11 @@ img{
         padding: 4rem 0;
     }
     .about__img{
-        width: 200px;
-        height: 200px;
+        width: 240px;
+        height: 380px;
     }
     .about__img img{
-        width: 165px;
+        width: 240px;
     }
 
     .skills__container{

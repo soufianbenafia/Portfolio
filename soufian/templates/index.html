@@ -1,15 +1,17 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <!-- ===== CSS ===== -->
         <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
 
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>Portfolio responsive complete</title>
     </head>
@@ -63,12 +65,13 @@
                     <div>
                         <h2 class="about__subtitle">{{ about.heading }}</h2>
                         <span class="about__profession">{{ about.career }}</span>
-                        <p class="about__text">{{ about.description }}</p>
+                        <p class="about__text">{{ about.description | linebreaksbr }}</p>
 
                         <div class="about__social">
-                            <a href="#" class="about__social-icon"><i class='bx bxl-linkedin' ></i></a>
-                            <a href="#" class="about__social-icon"><i class='bx bxl-github' ></i></a>
-                            <a href="#" class="about__social-icon"><i class='bx bxl-dribbble' ></i></a>
+                            <span onclick="window.location='www.xing.com/profile/soufian_BenAfia/cv'" class="iconify" data-icon="bxl:xing"></span>
+                            <a href="https://www.linkedin.com/in/soufian-ben-afia-8608a068/" class="about__social-icon"><i class='bx bxl-linkedin' ></i></a>
+                            <a href="https://github.com/soufianbenafia" class="about__social-icon"><i class='bx bxl-github' ></i></a>
+                            <a href="https://www.xing.com/profile/soufian_BenAfia/cv" class="about__social-icon"><i class='fa fa-xing' ></i></a>
                         </div>
                     </div>
                 </div>
@@ -104,6 +107,7 @@
                         <div class="portfolio__link">
                             <a href="{{portfolio.link}}" class="portfolio__link-name">View details</a>
                         </div>
+                        <p class="about__text">{{ portfolio.portfolio_descrip | linebreaksbr }} </p>
                     </div>
                     {% endfor %}
                 </div>
@@ -112,29 +116,16 @@
             <!--===== CONTACT =====-->
             <section class="contact section" id="contact">
                 <h2 class="section-title">Contact</h2>
-
+                <h2 class="section-title2"> My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you! </h2>
+                <h5 class="section-title2"></h5>
                 <div class="contact__container bd-grid">
-                    <div class="contact__info">
-                        <h3 class="contact__subtitle">EMAIL</h3>
-                        <span class="contact__text">info.mail.com</span>
-
-                        <h3 class="contact__subtitle">PHONE</h3>
-                        <span class="contact__text">+20 999-999</span>
-
-                        <h3 class="contact__subtitle">ADRESS</h3>
-                        <span class="contact__text">My contry</span>
-                    </div>
-
-                    <form action="" class="contact__form">
-                        <div class="contact__inputs">
-                            <input type="text" placeholder="Name" class="contact__input">
-                            <input type="mail" placeholder="Email" class="contact__input">
-                        </div>
-
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-
-                        <input type="submit" value="Enviar" class="contact__button">
-                    </form>
+                    <form  class="contact__form"  id='post-form'>
+                        {% csrf_token %}
+                        <input type="text" id ="subject" placeholder="Subject" class="contact__input">
+                        <input type="mail" id ="email" placeholder="Email" class="contact__input">
+                        <textarea name="" id="message" cols="0" rows="10" class="contact__input"></textarea>
+                        <input type="submit" value="Send" class="contact__button">
+                    </form> 
                 </div>
             </section>
         </main>
@@ -143,8 +134,8 @@
         <footer class="footer section">
             <div class="footer__container bd-grid">
                 <div class="footer__data">
-                    <h2 class="footer__title">JHON DOE</h2>
-                    <p class="footer__text">I'm Jhon Doe and this is my personal website</p>
+                    <h2 class="footer__title">Soufian</h2>
+                    <p class="footer__text">I'm Soufian and this is my personal website</p>
                 </div>
 
                 <div class="footer__data">
@@ -159,10 +150,10 @@
                 </div>
                 
                 <div class="footer__data">
-                    <h2 class="footer__title">FOLLOW</h2>
+                    <!-- <h2 class="footer__title">FOLLOW</h2>
                     <a href="#" class="footer__social"><i class='bx bxl-facebook' ></i></a>
                     <a href="#" class="footer__social"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#" class="footer__social"><i class='bx bxl-twitter' ></i></a>
+                    <a href="#" class="footer__social"><i class='bx bxl-twitter' ></i></a> -->
                 </div>
 
 
@@ -175,4 +166,23 @@
         <!--===== MAIN JS =====-->
         <script src="{% static 'assets/js/main.js' %}"></script>
     </body>
+    <script type="text/javascript">
+        $(document).on('submit','#post-form',function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url:'/create',
+                data:{
+                    Email:$('#email').val(),
+                    subject:$('#subject').val(),
+                    message:$('#message').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(data){
+                    $('h5').html(data);
+                }
+            });
+        });
+    </script>
 </html>
