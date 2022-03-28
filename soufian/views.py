@@ -37,7 +37,10 @@ def create(request):
 def index(request):
 
     # Home
-    home = Home.objects.latest('updated')
+    try:
+        home = Home.objects.latest('updated')
+    except Home.DoesNotExist:
+        home = None
 
     # About
     about = About.objects.latest('updated')
