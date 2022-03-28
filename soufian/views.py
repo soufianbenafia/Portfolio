@@ -45,7 +45,7 @@ def index(request):
     # About
     try:
         about = About.objects.latest('updated')
-    except about.DoesNotExist:
+    except About.DoesNotExist:
         about = None
 
     profiles = Profile.objects.filter(about=about)
