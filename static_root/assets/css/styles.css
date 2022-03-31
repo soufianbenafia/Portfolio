@@ -136,7 +136,7 @@ img{
     justify-content: space-between;
     align-items: center;
 }
-@media screen and (max-width: 768px){
+/* @media screen and (max-width: 768px){
     .nav__menu{
         position: fixed;
         top: var(--header-height);
@@ -148,7 +148,7 @@ img{
         transition: .5s;
         backdrop-filter: blur(10px);
     }
-}
+} */
 .nav__item{
     margin-bottom: var(--mb-4);
 }
@@ -212,13 +212,18 @@ img{
     transform: rotate(-180deg);
     color: var(--white-color);
 }
+
+/* Default styling */
 .home__img{
     position: absolute;
-    left: 850px;
-    top: 100px;
+    max-width: 100%;;
+    left: 60%;
+    top: 30%;
     bottom: 0;
-    width: 295px;
+    height: 60%;
+    width: 50%;
 }
+
 
 /* ===== ABOUT =====*/
 .about__container{
@@ -389,12 +394,6 @@ img{
 
 /* ===== MEDIA QUERIES =====*/
 /* For small devices */
-@media screen and (max-width: 320px) {
-  .home__img {
-    width: 230px;
-  }
-}
-
 @media screen and (min-width: 768px){
     body{
         margin: 0;
@@ -488,14 +487,73 @@ img{
         margin-right: auto;
     }
 }
-
-/* For tall screens on mobiles y desktop*/
-@media screen and (min-height: 721px) {
+ 
+/* For tall screens on mobiles y desktop */
+@media only screen and (min-height: 721px) {
     .home__container {
         height: 640px;
     }
-    .home__img {
-        width: 500px;
-        right: 24%;
+} 
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+    .home__img{
+        position: absolute;
+        max-width: 100%;;
+        left: 60%;
+        top: 40%;
+        bottom: 0;
+        height: auto;
+        width:auto;
+    }
+  }
+
+
+  /* For mobile devices View */
+@media screen and (min-device-width: 320px)
+and (max-device-width: 480px) {
+    .home__img{
+        position: absolute;
+        max-width: 100%;;
+        left: 10%;
+        top: 40%;
+        bottom: 0;
+        height: auto;
+        width:auto;
+    }
+    .nav__menu{
+        position: fixed;
+        top: var(--header-height);
+        right: -100%;
+        width: 80%;
+        height: 100%;
+        padding: 2rem;
+        background-color: rgba(255,255,255,.3);
+        transition: .5s;
+        backdrop-filter: blur(10px);
+    } 
+    
+    .nav__toggle{
+        position: fixed;
+        left: 57%;
+        top: 15%;
+        bottom: 0;
+        color: var(--white-color);
+        font-size: 1.5rem;
+        cursor: pointer;
     }
 }
+
+  /* For Tablets or iPad View */
+  @media screen and (min-device-width: 768px)
+  and (max-device-width: 1024px) {
+      .home__img{
+          position: absolute;
+          max-width: 100%;;
+          left: 62%;
+          top: 40%;
+          bottom: 0;
+          height: auto;
+          width:auto;
+      }
+  }
