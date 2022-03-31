@@ -212,12 +212,16 @@ img{
     transform: rotate(-180deg);
     color: var(--white-color);
 }
+
+/* Default styling */
 .home__img{
     position: absolute;
-    left: 850px;
-    top: 100px;
+    max-width: 100%;;
+    left: 60%;
+    top: 30%;
     bottom: 0;
-    width: 295px;
+    height: 60%;
+    width: 50%;
 }
 
 /* ===== ABOUT =====*/
@@ -322,9 +326,7 @@ img{
 
 /* ===== CONTACT =====*/
 .contact__container{
-    position: relative;
     row-gap: 2rem;
-    left: 270px;
 }
 .contact__subtitle{
     font-size: var(--normal-font-size);
@@ -389,12 +391,6 @@ img{
 
 /* ===== MEDIA QUERIES =====*/
 /* For small devices */
-@media screen and (max-width: 320px) {
-  .home__img {
-    width: 230px;
-  }
-}
-
 @media screen and (min-width: 768px){
     body{
         margin: 0;
@@ -488,14 +484,72 @@ img{
         margin-right: auto;
     }
 }
-
-/* For tall screens on mobiles y desktop*/
-@media screen and (min-height: 721px) {
+ 
+/* For tall screens on mobiles y desktop */
+@media only screen and (min-height: 721px) {
     .home__container {
         height: 640px;
     }
-    .home__img {
-        width: 500px;
-        right: 24%;
+} 
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+    .home__img{
+        position: absolute;
+        max-width: 100%;;
+        left: 60%;
+        top: 40%;
+        bottom: 0;
+        height: auto;
+        width:auto;
     }
+
+    .contact__container{
+        position: relative;
+        row-gap: 2rem;
+        left: 270px;
+    }
+  }
+
+
+  /* For mobile devices View */
+@media screen and (min-device-width: 320px)
+and (max-device-width: 480px) {
+    .home__img{
+        position: absolute;
+        max-width: 100%;;
+        left: 10%;
+        top: 40%;
+        bottom: 0;
+        height: auto;
+        width:auto;
+    }
+
+    .about__img{
+        width: 240px;
+        height: 380px;
+    }
+    .about__img img{
+        width: 240px;
+    }
+
 }
+
+  /* For Tablets or iPad View */
+  @media screen and (min-device-width: 768px)
+  and (max-device-width: 1024px) {
+      .home__img{
+          position: absolute;
+          max-width: 100%;;
+          left: 62%;
+          top: 40%;
+          bottom: 0;
+          height: auto;
+          width:auto;
+      }
+
+      .contact__form{
+        position: relative;
+        left: 200px;
+    }
+  }
